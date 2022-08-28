@@ -2,27 +2,27 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import HomeIcon from "@mui/icons-material/Home";
 import Card from "./Card";
-// import axios from "../axios.js";
+import axios from "../axios.js";
 
 import img1 from "../assests/images/main5.jpg";
 import img2 from "../assests/images/main6.jpg";
 import img3 from "../assests/images/main7.jpg";
 
 const TopAreas = (props) => {
-  // const [post, setPost] = React.useState([]);
+  const [post, setPost] = useState([]);
 
-  // useEffect(() => {
-  //   const getPosts = async () => {
-  //     try {
-  //       const res = await axios.get("/posts/random");
-  //       console.log(res.data);
-  //       setPost(res.data);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   getPosts();
-  // }, []);
+  useEffect(() => {
+    const getPosts = async () => {
+      try {
+        const res = await axios.get("/posts/random");
+        console.log(res.data);
+        setPost(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getPosts();
+  }, []);
 
   return (
     <Container>
@@ -49,9 +49,9 @@ const TopAreas = (props) => {
       </Info>
 
       <CardWrapper>
-        {/* {post.map((post) => {
+        {post.map((post) => {
           return <Card post={post} />;
-        })} */}
+        })}
       </CardWrapper>
 
       <br />

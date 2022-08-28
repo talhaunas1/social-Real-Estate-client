@@ -1,27 +1,30 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import main12 from "../assests/images/main12.jpg";
-// import axios from '../axios.js'
+import axios from "../axios.js";
+import { Link } from "react-router-dom";
 
 const AddPost = () => {
   const [city, setCity] = useState("");
   const [street, setStreet] = useState("");
   const [price, setPrice] = useState(0);
+  const [mobile, setMobile] = useState(0);
   const [imgUrl, setImgUrl] = useState("");
 
-  // const handleSubmit = async () => {
-  //   console.log("I am running");
-  //   try {
-  //     await axios.post("/posts", {
-  //       city,
-  //       street,
-  //       price,
-  //       imgUrl,
-  //     });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const handleSubmit = async () => {
+    console.log("I am running");
+    try {
+      await axios.post("/posts", {
+        city,
+        street,
+        price,
+        mobile,
+        imgUrl,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Container>
@@ -33,6 +36,12 @@ const AddPost = () => {
             type={"text"}
             placeholder="City"
             onChange={(e) => setCity(e.target.value)}
+          />{" "}
+          <br />
+          <Input
+            type={"number"}
+            placeholder="Phone"
+            onChange={(e) => setMobile(e.target.value)}
           />{" "}
           <br />
           <Input
@@ -53,8 +62,10 @@ const AddPost = () => {
             onChange={(e) => setImgUrl(e.target.value)}
           />
         </Inputs>
-        <Button >Submit</Button>
-        {/* <Button onClick={handleSubmit}>Submit</Button> */}
+        {/* <Button >Submit</Button> */}
+        <Link to="/">
+          <Button onClick={handleSubmit}>Submit</Button>
+        </Link>
       </Form>
     </Container>
   );
@@ -86,7 +97,7 @@ const Heading = styled.div`
   font-size: 20px;
   font-weight: bold;
   color: grey;
-  text-align:center ;
+  text-align: center;
 `;
 
 const Inputs = styled.div`
@@ -98,7 +109,7 @@ const Input = styled.input`
   height: 7vh;
   border-radius: 3px;
   padding-left: 10px;
-  margin:10px ;
+  margin: 10px;
 `;
 
 const Button = styled.div`
